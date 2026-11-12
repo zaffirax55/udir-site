@@ -1281,7 +1281,7 @@ function printGlow(){
 }
 function rearLabel(){
   return ctex(512,160,function(x){
-    x.clearRect(0,0,512,160); x.font='500 56px "IBM Plex Sans","Segoe UI",Arial,sans-serif'; x.textAlign='center'; x.fillStyle='#b9c1d0'; x.fillText('USB-C',256,92);
+    x.clearRect(0,0,512,160); x.font='500 56px "IBM Plex Sans","Segoe UI",Arial,sans-serif'; x.textAlign='center'; x.fillStyle='#dfe5f0'; x.fillText('USB-C',256,92);
   });
 }
 function pcbTex(){
@@ -1473,6 +1473,8 @@ function Viewer(host,kind){
     var h=mk(new THREE.CylinderGeometry(.058,.062,.028,24),screwM,p[0],p[1],-.534); h.rotation.x=PI/2; boss.add(h);
     var s1=mk(new THREE.BoxGeometry(.075,.014,.006),slotM,p[0],p[1],-.549), s2=mk(new THREE.BoxGeometry(.014,.075,.006),slotM,p[0],p[1],-.549); boss.add(s1); boss.add(s2);
   });
+  var chromeM=new THREE.MeshStandardMaterial({color:0xcfd6e2,metalness:1,roughness:.2,envMapIntensity:1.5});
+  addTo(boss,mk(slabG(.64,.32,.16,.055,.014,{w:.5,h:.22,r:.11}),chromeM,0,0,-.5245),0xdfe5f0);
   var lbl=new THREE.Mesh(new THREE.PlaneGeometry(.64,.2),new THREE.MeshBasicMaterial({map:rearLabel(),transparent:true,depthWrite:false,toneMapped:false})); lbl.rotation.y=PI; lbl.position.set(0,-.27,-.5215); boss.add(lbl);
   part(boss,0,-1.05,.35);
 
@@ -1496,8 +1498,14 @@ function Viewer(host,kind){
   pcb.add(mk(new THREE.BoxGeometry(.1,.05,.03),ledM,.69,-.88,topZ+.015));
   /* USB-C receptacle toward the back, aligned with the rear plate opening */
   var usbShell=addTo(pcb,mk(slabG(.5,.22,.11,.4,.01),canM,0,-.06,-.0175-.2),0xdfe5f0);
-  var usbCav=mk(slabG(.4,.12,.06,.02,.003),new THREE.MeshBasicMaterial({color:0x050608}),0,-.06,-.0175-.4+.0); pcb.add(usbCav);
-  pcb.add(mk(new THREE.BoxGeometry(.32,.028,.01),goldM,0,-.06,-.0175-.405));
+  var usbCav=mk(slabG(.46,.17,.085,.02,.003),new THREE.MeshBasicMaterial({color:0x030406}),0,-.06,-.0175-.4); pcb.add(usbCav);
+  var tongueM=new THREE.MeshStandardMaterial({color:0x3a404c,metalness:.85,roughness:.35,envMapIntensity:.9});
+  addTo(pcb,mk(slabG(.36,.05,.02,.02,.004),tongueM,0,-.06,-.0175-.4-.028),0x8b93a6);
+  for(var pn=0;pn<12;pn++){
+    var px=-.15+pn*.0273;
+    pcb.add(mk(new THREE.BoxGeometry(.017,.012,.006),goldM,px,-.06+.0275,-.0175-.4-.0405));
+    pcb.add(mk(new THREE.BoxGeometry(.017,.012,.006),goldM,px,-.06-.0275,-.0175-.4-.0405));
+  }
   part(pcb,pcbZ,.75,.45);
   anchor('se',pcb,-.55,-.3,.07); anchor('usb',pcb,0,-.06,-.4);
 
