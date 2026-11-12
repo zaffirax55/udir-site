@@ -1596,7 +1596,7 @@ function Viewer(host,kind){
     if(m!=='tap'&&tap.on){tap.on=false; if(phone)phone.visible=false; ring.forEach(function(r){r.material.opacity=0}); host.classList.remove('ok')}
     exT=0; ckT=0; zoomT=(m==='explode')?(small?.83:.95):(m==='cut')?(small?1.5:1.4):(m==='tap')?(small?1.45:1.12):(small?1.72:1.28); shiftT=(small&&(m==='explode'||m==='cut'))?-.55:0;
     if(m==='front'){tgt.x=.12; setY(-.35)}
-    if(m==='rear'){tgt.x=.1; setY(PI+.4)}
+    if(m==='rear'){tgt.x=0; setY(PI)}
     if(m==='explode'){tgt.x=.2; setY(-.78); exT=1}
     if(m==='cut'){tgt.x=.16; setY(-1.0); ckT=1}
     if(m==='tap'){tgt.x=.12; setY(-.35); startTap()}
