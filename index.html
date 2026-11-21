@@ -671,6 +671,40 @@ html{scroll-padding-top:70px}
 .hero h1 .g::before{content:attr(data-t);position:absolute;left:0;top:0;z-index:-1;background:none;color:#2B3AA0;-webkit-text-fill-color:#2B3AA0;
   text-shadow:0 1px 0 #3A4BC4,0 2px 0 #3243B3,0 3px 0 #2A3A9E,0 4px 0 #223188,0 5px 0 #1B2873,0 6px 1px rgba(5,9,22,.7),0 10px 14px rgba(5,9,22,.55),0 18px 40px rgba(106,92,255,.35)}
 .hero .sub{text-shadow:0 0 18px rgba(125,160,255,.55);margin-top:18px}
+
+/* ---------- industries gallery ---------- */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gcard{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--ph);cursor:zoom-in;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .25s}
+.gcard img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.gcard:hover{transform:translateY(-4px);box-shadow:0 18px 34px -18px rgba(17,24,39,.45);border-color:var(--accent)}
+.gcard:hover img{transform:scale(1.035)}
+.gz{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:rgba(9,12,20,.62);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff;opacity:0;transform:scale(.85);transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.gcard:hover .gz,.gcard:focus-visible .gz{opacity:1;transform:none}
+.gal-note{margin-top:16px;font-size:12.5px;color:var(--muted)}
+.lb{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;overflow:hidden;color:#fff}
+.lb::backdrop{background:rgba(5,8,16,.88);backdrop-filter:blur(6px)}
+.lb-in{position:relative;width:100%;height:100%;display:grid;place-items:center;padding:16px}
+.lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.lb img{width:min(92vw,calc(100vh - 110px),860px);height:auto;aspect-ratio:1/1;border-radius:12px;box-shadow:0 30px 80px -20px #000;background:var(--dark-card)}
+.lb figcaption{font:600 13px/1.3 var(--body);letter-spacing:.04em;color:#D8E1F2;text-align:center}
+.lb figcaption span{color:var(--accent-dk);margin-left:10px;font-family:var(--mono);font-weight:500}
+.lb-x,.lb-n{position:absolute;border:1px solid rgba(255,255,255,.22);background:rgba(17,23,34,.72);color:#fff;border-radius:50%;width:44px;height:44px;font:400 26px/1 var(--body);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
+.lb-x:hover,.lb-n:hover{background:var(--accent)}
+.lb-x{top:14px;right:14px}
+.lb-n{top:50%;margin-top:-22px}
+.lb-p{left:14px}.lb-nx{right:14px}
+html.lb-open{overflow:hidden}
+@media (max-width:1000px){.gal-grid{gap:12px}}
+@media (max-width:720px){
+  .gal-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px;padding:2px 24px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gal-grid::-webkit-scrollbar{display:none}
+  .gal-grid li{flex:0 0 80%;scroll-snap-align:center}
+  .gz{opacity:1;transform:none}
+  .lb-n{top:auto;bottom:18px;margin:0}
+  .lb-p{left:calc(50% - 56px)}.lb-nx{right:calc(50% - 56px)}
+  .lb-in{padding-bottom:78px}
+}
+@media (prefers-reduced-motion:reduce){.gcard,.gcard img{transition:none}.gcard:hover{transform:none}.gcard:hover img{transform:none}}
 </style>
 </head>
 <body>
@@ -981,6 +1015,27 @@ html{scroll-padding-top:70px}
       <ul class="chips"><li>Healthcare registration terminals</li><li>Government self-service kiosks</li><li>Automated parcel collection</li><li>Equipment rental systems</li><li>Educational institutions</li><li>Transportation terminals</li><li>Event accreditation systems</li><li>Visitor registration platforms</li></ul>
     </div>
   </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="sec gal" id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">More industries</span>
+      <h2 class="h2">Wherever identity needs to be checked</h2>
+      <p class="lead">The same reader, the same tap-to-verify flow and the same four interfaces fit access points, kiosks and self-service terminals far beyond the six core scenarios. Tap a picture to enlarge it.</p>
+    </div>
+    <ul class="gal-grid" id="galGrid" aria-label="More industries"><li><button class="gcard" type="button" data-t="Smart residential access" aria-label="Enlarge: Smart residential access"><img src="img/ind-residential.webp" width="960" height="960" loading="lazy" decoding="async" alt="Resident opening an apartment building entrance by tapping a smartphone on a UDIR reader"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Industrial access &amp; safety" aria-label="Enlarge: Industrial access &amp; safety"><img src="img/ind-industrial.webp" width="960" height="960" loading="lazy" decoding="async" alt="Factory worker tapping a smartphone on a UDIR reader at a production zone door"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Construction site access" aria-label="Enlarge: Construction site access"><img src="img/ind-construction.webp" width="960" height="960" loading="lazy" decoding="async" alt="Contractor verifying a permit with a smartphone at a UDIR reader on a site entry gate"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Micro-mobility rental" aria-label="Enlarge: Micro-mobility rental"><img src="img/ind-mobility.webp" width="960" height="960" loading="lazy" decoding="async" alt="Rider unlocking an e-scooter by tapping a smartphone on a UDIR reader at a rental station"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Smart transport &amp; ticketing" aria-label="Enlarge: Smart transport &amp; ticketing"><img src="img/ind-transport.webp" width="960" height="960" loading="lazy" decoding="async" alt="Passenger validating a digital train ticket on a UDIR reader at a station gate"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Events &amp; conferences" aria-label="Enlarge: Events &amp; conferences"><img src="img/ind-events.webp" width="960" height="960" loading="lazy" decoding="async" alt="Visitor checking in with a conference ticket on a UDIR reader at an entrance gate"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Coworking &amp; flex offices" aria-label="Enlarge: Coworking &amp; flex offices"><img src="img/ind-coworking.webp" width="960" height="960" loading="lazy" decoding="async" alt="Member opening a coworking space door with a smartphone on a UDIR reader"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Libraries &amp; cultural spaces" aria-label="Enlarge: Libraries &amp; cultural spaces"><img src="img/ind-libraries.webp" width="960" height="960" loading="lazy" decoding="async" alt="Visitor checking in at a library self-service terminal fitted with a UDIR reader"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li><li><button class="gcard" type="button" data-t="Fitness clubs &amp; gyms" aria-label="Enlarge: Fitness clubs &amp; gyms"><img src="img/ind-fitness.webp" width="960" height="960" loading="lazy" decoding="async" alt="Gym member entering through a turnstile with a smartphone on a UDIR reader"><span class="gz" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg></span></button></li></ul>
+    <p class="gal-note">Concept visuals for illustration only; they are not photographs of deployed installations.</p>
+  </div>
+  <dialog class="lb" id="lb" aria-label="Industry gallery">
+    <div class="lb-in">
+      <button class="lb-x" id="lbX" type="button" aria-label="Close">&times;</button>
+      <button class="lb-n lb-p" id="lbP" type="button" aria-label="Previous picture">&#8249;</button>
+      <figure><img id="lbImg" alt="" width="960" height="960"><figcaption id="lbCap"></figcaption></figure>
+      <button class="lb-n lb-nx" id="lbN" type="button" aria-label="Next picture">&#8250;</button>
+    </div>
+  </dialog>
 </section>
 
 <!-- WHY -->
@@ -1974,6 +2029,41 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!fm.hidden){fm.hidden=true;fb.setAttribute('aria-expanded','false');fb.focus()}});
   var saved=2; try{var sv=parseInt(localStorage.getItem('udir-font3'),10); if(!isNaN(sv))saved=sv}catch(e){}
   applyPair(saved<pairs.length?saved:2);
+})();
+</script>
+<script>
+/* industries gallery + lightbox */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('#galGrid .gcard')), lb=document.getElementById('lb');
+  if(!cards.length||!lb)return;
+  var img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), cur=0, opener=null, root=document.documentElement;
+  function show(i){
+    cur=(i+cards.length)%cards.length;
+    var c=cards[cur], im=c.querySelector('img');
+    img.src=im.currentSrc||im.src; img.alt=im.alt;
+    cap.innerHTML=c.getAttribute('data-t')+'<span>'+(cur+1)+' / '+cards.length+'</span>';
+    [1,-1].forEach(function(d){var n=cards[(cur+d+cards.length)%cards.length].querySelector('img'); (new Image()).src=n.currentSrc||n.src});
+  }
+  function open(i,from){
+    opener=from; show(i);
+    if(lb.showModal){ if(!lb.open)lb.showModal() } else lb.setAttribute('open','');
+    root.classList.add('lb-open');
+  }
+  function close(){ if(lb.close)lb.close(); else lb.removeAttribute('open'); root.classList.remove('lb-open'); if(opener)opener.focus() }
+  cards.forEach(function(c,i){c.addEventListener('click',function(){open(i,c)})});
+  document.getElementById('lbX').addEventListener('click',close);
+  document.getElementById('lbP').addEventListener('click',function(){show(cur-1)});
+  document.getElementById('lbN').addEventListener('click',function(){show(cur+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-in'))close()});
+  lb.addEventListener('close',function(){root.classList.remove('lb-open')});
+  lb.addEventListener('cancel',function(){root.classList.remove('lb-open')});
+  document.addEventListener('keydown',function(e){
+    if(!lb.hasAttribute('open'))return;
+    if(e.key==='ArrowLeft'){show(cur-1)} else if(e.key==='ArrowRight'){show(cur+1)} else if(e.key==='Escape'&&!lb.showModal){close()}
+  });
+  var x0=null;
+  lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){if(x0===null)return; var dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>50)show(cur+(dx<0?1:-1))},{passive:true});
 })();
 </script>
 </body>
