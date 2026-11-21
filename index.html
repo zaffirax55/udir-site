@@ -661,6 +661,16 @@ html{scroll-padding-top:70px}
 .app-tabs.auto button[aria-selected="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:5px;height:2px;border-radius:2px;background:rgba(255,255,255,.95);transform-origin:left;transform:scaleX(var(--p,0));opacity:.9;transition:opacity .3s}
 .app-tabs.auto button[aria-selected="true"]::before{content:"";position:absolute;left:10px;right:10px;bottom:5px;height:2px;border-radius:2px;background:rgba(255,255,255,.28)}
 .app-tabs.auto.paused button[aria-selected="true"]::after{opacity:.55}
+
+/* ===== hero headline: extruded 3D lettering ===== */
+.hero h1{font-size:calc(clamp(36px,5vw,62px) * var(--ds));font-weight:800;line-height:1.1;padding-bottom:6px;
+  text-shadow:0 1px 0 #C9D3EC,0 2px 0 #A9B6D8,0 3px 0 #8D9CC6,0 4px 0 #7282B3,0 5px 0 #5B6CA0,0 6px 0 #46578C,0 7px 1px rgba(10,16,40,.6),0 10px 14px rgba(5,9,22,.55),0 18px 40px rgba(21,87,255,.35)}
+.hero h1 .w{transform-origin:50% 100%}
+.hero h1 .g{position:relative;text-shadow:none;background:none!important;color:transparent;-webkit-text-fill-color:transparent;animation:up .75s var(--ease) both;animation-delay:calc(var(--i)*80ms + 80ms)}
+.hero h1 .g::after{content:attr(data-t);position:absolute;left:0;top:0;z-index:1;background:linear-gradient(100deg,#7FA6FF 0%,#B39BFF 50%,#4DE8CF 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gshift 9s ease-in-out infinite alternate}
+.hero h1 .g::before{content:attr(data-t);position:absolute;left:0;top:0;z-index:-1;background:none;color:#2B3AA0;-webkit-text-fill-color:#2B3AA0;
+  text-shadow:0 1px 0 #3A4BC4,0 2px 0 #3243B3,0 3px 0 #2A3A9E,0 4px 0 #223188,0 5px 0 #1B2873,0 6px 1px rgba(5,9,22,.7),0 10px 14px rgba(5,9,22,.55),0 18px 40px rgba(106,92,255,.35)}
+.hero .sub{text-shadow:0 0 18px rgba(125,160,255,.55);margin-top:18px}
 </style>
 </head>
 <body>
@@ -1905,7 +1915,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   var h1=$('.hero h1');
   if(h1&&!reduce){
     var words=h1.textContent.trim().split(/\s+/); h1.textContent='';
-    words.forEach(function(w,i){var s=document.createElement('span'); s.className='w'+(i>=2?' g':''); s.style.setProperty('--i',i); s.textContent=w; h1.appendChild(s); h1.appendChild(document.createTextNode(' '))});
+    words.forEach(function(w,i){var s=document.createElement('span'); s.className='w'+(i>=2?' g':''); s.style.setProperty('--i',i); s.setAttribute('data-t',w); s.textContent=w; h1.appendChild(s); h1.appendChild(document.createTextNode(' '))});
   }
 
   /* pointer spotlight + subtle 3D tilt on cards (mouse only) */
