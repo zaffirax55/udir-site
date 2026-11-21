@@ -1843,10 +1843,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   }
   fromHash(); window.addEventListener('hashchange',fromHash);
 
-  /* applications: auto-advance every 4 s, loop; pauses on hover/focus, off-screen or after a manual pick */
+  /* applications: auto-advance every 3 s, loop; pauses on hover/focus, off-screen or after a manual pick */
   (function(){
     var list=$('#appTabs'), panels=$('.app-panels'), sec=$('#applications'); if(!list||!panels||!sec)return;
-    var tabs=appTabs.tabs, DUR=4000, el=0, last=0, hold=0, hover=false, focus=false, seen=false;
+    var tabs=appTabs.tabs, DUR=3000, el=0, last=0, hold=0, hover=false, focus=false, seen=false;
     /* keep the section height stable so content below never jumps */
     function fit(){
       var ps=$$('.app-panel',panels), h=0; panels.style.minHeight='';
@@ -1861,7 +1861,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     [list,panels].forEach(function(n){
       n.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover=true});
       n.addEventListener('pointerleave',function(){hover=false});
-      n.addEventListener('focusin',function(){focus=true}); n.addEventListener('focusout',function(){focus=false});
+      n.addEventListener('focusin',function(e){var t=e.target; try{focus=t.matches(':focus-visible')}catch(x){focus=false}}); n.addEventListener('focusout',function(){focus=false});
     });
     appTabs.onUser=function(){el=0; set(0); hold=performance.now()+8000};
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){seen=es[0].isIntersecting},{rootMargin:'-35% 0px -35% 0px'}).observe(panels)}else seen=true;
