@@ -1853,7 +1853,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   }
   fromHash(); window.addEventListener('hashchange',fromHash);
 
-  /* applications: auto-advance every 3 s, loop; pauses on hover/focus, off-screen or after a manual pick */
+  /* applications: auto-advance every 3 s, endless loop; only waits while off-screen or briefly after a manual pick */
   (function(){
     var list=$('#appTabs'), panels=$('.app-panels'), sec=$('#applications'); if(!list||!panels||!sec)return;
     var tabs=appTabs.tabs, DUR=3000, el=0, last=0, hold=0, hover=false, focus=false, seen=false;
@@ -1873,11 +1873,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
       n.addEventListener('pointerleave',function(){hover=false});
       n.addEventListener('focusin',function(e){var t=e.target; try{focus=t.matches(':focus-visible')}catch(x){focus=false}}); n.addEventListener('focusout',function(){focus=false});
     });
-    appTabs.onUser=function(){el=0; set(0); hold=performance.now()+8000};
+    appTabs.onUser=function(){el=0; set(0); hold=performance.now()+3000};
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){seen=es[0].isIntersecting},{rootMargin:'-35% 0px -35% 0px'}).observe(panels)}else seen=true;
     function tick(now){
       var dt=last?Math.min(100,now-last):0; last=now;
-      var run=seen&&!hover&&!focus&&!document.hidden&&now>hold;
+      var run=seen&&!document.hidden&&now>hold;
       list.classList.toggle('paused',!run);
       if(run){el+=dt; if(el>=DUR){el=0; appTabs.select(tabs[(idx()+1)%tabs.length])}}
       set(el/DUR);
